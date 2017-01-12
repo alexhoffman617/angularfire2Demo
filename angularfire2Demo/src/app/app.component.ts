@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import * as firebase from 'firebase';
+
 
 
 @Component({
@@ -9,15 +11,25 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class AppComponent {
     messages: FirebaseListObservable<any[]>;
-    submitMessage(time, name, text){
+    inputText: '';
+    submitMessage(name, text){
          this.messages.push({
-           time: time,
+           time: firebase.database.ServerValue.TIMESTAMP,
            name: name,
            text: text
          });
+         this.inputText = '';
     };
+    formatDate(date) {
+      var actualDate = new Date(date);
+      return actualDate.getHours() + ':' + actualDate.getMinutes();
+    }
     constructor(af: AngularFire) {
-         this.messages = af.database.list('/messages');
+         this.messages = af.database.list('/messages', { 
+           query: {
+             orderByChild: 'time'
+           }
+         });
 
   }
 }

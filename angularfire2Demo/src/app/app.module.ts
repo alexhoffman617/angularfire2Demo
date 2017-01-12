@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from 'angularfire2';
+import { FormsModule } from '@angular/forms';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAxb2bqyFPng5Tee0MZrHZ5PbACPN2_zCg",
@@ -14,6 +15,7 @@ export const firebaseConfig = {
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   declarations: [ AppComponent ],
