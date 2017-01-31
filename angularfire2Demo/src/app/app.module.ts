@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AngularFireModule, AuthProviders, AuthMethods, AngularFire} from 'angularfire2';
-
+import { FormsModule } from '@angular/forms';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAxb2bqyFPng5Tee0MZrHZ5PbACPN2_zCg",
@@ -22,6 +22,7 @@ const myFirebaseAuthConfig = {
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    FormsModule
   ],
   declarations: [ AppComponent ],
   bootstrap: [ AppComponent ]

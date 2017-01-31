@@ -1,10 +1,10 @@
 
   <ul>
-    HI
     <li class="text" *ngFor="let message of messages | async">
-      [{{message.time}}] {{message.name}}: {{message.text}}
+      [{{formatDate(message.time)}}] {{message.name}}: {{message.text}}
     </li>
-    <button (click)="submitMessage('2:00', 'Sam', 'Hey')">Submit Message</button>
+    <input [(ngModel)]='inputText'>
+    <button (click)="submitMessage('Sam', inputText)">Submit Message</button>
   </ul>
   <div>
     <div> {{ (af.auth | async)?.uid }} </div>
