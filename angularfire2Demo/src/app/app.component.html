@@ -6,3 +6,8 @@
     </li>
     <button (click)="submitMessage('2:00', 'Sam', 'Hey')">Submit Message</button>
   </ul>
+  <div>
+    <div> {{ (af.auth | async)?.uid }} </div>
+  <button (click)="login()">Login</button>
+  <button (click)="logout()">Logout</button>
+  </div>
