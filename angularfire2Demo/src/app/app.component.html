@@ -4,7 +4,7 @@
       [{{formatDate(message.time)}}] {{message.name}}: {{message.text}}
     </li>
     <input [(ngModel)]='inputText'>
-    <button (click)="submitMessage('Sam', inputText)">Submit Message</button>
+    <button (click)="submitMessage(inputText)">Submit Message</button>
   </ul>
   <div>
     <div> {{ (af.auth | async)?.uid }} </div>

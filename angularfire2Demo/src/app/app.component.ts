@@ -11,7 +11,6 @@ import * as firebase from 'firebase';
 })
 export class AppComponent {
     messages: FirebaseListObservable<any[]>;
-<<<<<<< HEAD
     login() {
       this.af.auth.login();
     }

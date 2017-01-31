@@ -21,7 +21,7 @@ const myFirebaseAuthConfig = {
 @NgModule({
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig),
     FormsModule
   ],
   declarations: [ AppComponent ],
