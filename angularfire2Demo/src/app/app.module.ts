@@ -16,7 +16,7 @@ export const firebaseConfig = {
 const myFirebaseAuthConfig = {
   provider: AuthProviders.Google,
   method: AuthMethods.Redirect,
-  remember: 'default', scope: ['email','id','name','picture']
+  remember: 'default', 
 };
 
 @NgModule({

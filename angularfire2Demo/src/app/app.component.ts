@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 import { MdButton, MdInput, MdList, MdListItem, MdIcon } from '@angular/material';
+import { AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
 
 
 
@@ -14,17 +15,20 @@ import { MdButton, MdInput, MdList, MdListItem, MdIcon } from '@angular/material
 export class AppComponent {
     messages: FirebaseListObservable<any[]>;
     login() {
-      this.af.auth.login();
+      this.af.auth.login({
+
+      });
     }
 
     logout() {
       this.af.auth.logout();
     }
     af;
+    user;
     inputText: '';
     submitMessage(text){
-      var username = this.af.auth._events[0].value ? this.af.auth._events[0].value.google.displayName: 'anonymous';
-      var photo = this.af.auth._events[0].value ? this.af.auth._events[0].value.google.photoURL: 'http://cdn.onlinewebfonts.com/svg/img_210318.svg';
+      var username = this.user ? this.user.auth.displayName: 'anonymous';
+      var photo = this.user ? this.user.auth.photoURL: 'http://cdn.onlinewebfonts.com/svg/img_210318.svg';
          this.messages.push({
            time: firebase.database.ServerValue.TIMESTAMP,
            name: username,
@@ -35,7 +39,7 @@ export class AppComponent {
     };
     formatDate(date) {
       var actualDate = new Date(date);
-      return actualDate.getHours() + ':' + actualDate.getMinutes();
+      return actualDate.toTimeString().substr(0,5);
     }
     constructor(af: AngularFire) {
         this.af = af;
@@ -44,5 +48,16 @@ export class AppComponent {
              orderByChild: 'time'
            }
          });
+
+      this.af.auth.subscribe(user => {
+        if(user) {
+          // user logged in
+          this.user = user;
+        }
+        else {
+          // user not logged in
+          this.user = null;
+        }
+    });
   }
 }
