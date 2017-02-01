@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
+import { MdButton, MdInput, MdList, MdListItem, MdIcon } from '@angular/material';
+
 
 
 
@@ -21,11 +23,13 @@ export class AppComponent {
     af;
     inputText: '';
     submitMessage(text){
-      var username = this.af.auth._events[0].value ? this.af.auth._events[0].value.google.displayName: 'anonymous'
+      var username = this.af.auth._events[0].value ? this.af.auth._events[0].value.google.displayName: 'anonymous';
+      var photo = this.af.auth._events[0].value ? this.af.auth._events[0].value.google.photoURL: 'http://cdn.onlinewebfonts.com/svg/img_210318.svg';
          this.messages.push({
            time: firebase.database.ServerValue.TIMESTAMP,
            name: username,
-           text: text
+           text: text,
+           photo: photo
          });
          this.inputText = '';
     };

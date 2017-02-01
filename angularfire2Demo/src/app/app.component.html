@@ -1,13 +1,20 @@
 
-  <ul>
-    <li class="text" *ngFor="let message of messages | async">
-      [{{formatDate(message.time)}}] {{message.name}}: {{message.text}}
-    </li>
-    <input [(ngModel)]='inputText'>
-    <button (click)="submitMessage(inputText)">Submit Message</button>
-  </ul>
+  <md-list>
+    <md-list-item class="text" *ngFor="let message of messages | async">
+      <img src="{{message.photo}}" style="width: 2%">
+        <div>
+          <span style="font-weight: bold">{{message.name}}</span>
+          <span style="font-style: italic; color: #9e9ea6; font-size: small;     padding-left: .5rem; padding-top: .25rem;">{{formatDate(message.time)}}</span>
+        </div>
+        <div>{{message.text}}</div> 
+    </md-list-item>
+  </md-list>
+    <md-input-container>
+       <input md-input placeholder="Message" [(ngModel)]='inputText'>
+    </md-input-container>
+    <button md-raised-button color="accent" (click)="submitMessage(inputText)">Submit Message</button>
   <div>
-    <div> {{ (af.auth | async)?.uid }} </div>
-  <button (click)="login()">Login</button>
-  <button (click)="logout()">Logout</button>
+    <div> Google User Id: {{ (af.auth | async)?.uid }} </div>
+  <button md-raised-button (click)="login()">Login</button>
+  <button md-raised-button color="primary" (click)="logout()">Logout</button>
   </div>
