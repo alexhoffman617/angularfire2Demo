@@ -27,7 +27,7 @@ export class AppComponent {
     user;
     inputText: '';
     submitMessage(text){
-      var username = this.user ? this.user.auth.displayName: 'anonymous';
+      var username = this.user ? this.user.auth.displayName: 'Anonymous';
       var photo = this.user ? this.user.auth.photoURL: 'http://cdn.onlinewebfonts.com/svg/img_210318.svg';
          this.messages.push({
            time: firebase.database.ServerValue.TIMESTAMP,

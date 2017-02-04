@@ -1,20 +1,23 @@
-
-  <md-list>
-    <md-list-item class="text" *ngFor="let message of messages | async">
-      <img src="{{message.photo}}" style="width: 2%">
-        <div>
+<md-grid-list cols="2" rowHeight="50px">
+  <md-grid-tile [colspan]="2" [rowspan]="2"> 
+    <div>
+      <div> Logged in as: {{ user ? user.auth.email : 'Anonymous' }} </div>
+      <button md-raised-button (click)="login()">Login</button>
+      <button md-raised-button color="primary" (click)="logout()">Logout</button>
+    </div>
+  </md-grid-tile>
+    <md-grid-tile [colspan]="2" [rowspan]="1" *ngFor="let message of messages | async">
+        <img src="{{message.photo}}" style="width: 2%">
+        <div style="margin-left: 5px">
           <span style="font-weight: bold">{{message.name}}</span>
-          <span style="font-style: italic; color: #9e9ea6; font-size: small;     padding-left: .5rem; padding-top: .25rem;">{{formatDate(message.time)}}</span>
+          <span style="font-style: italic; color: #9e9ea6; font-size: small;">{{formatDate(message.time)}}</span>
         </div>
-        <div>{{message.text}}</div> 
-    </md-list-item>
-  </md-list>
-    <md-input-container>
-       <input md-input placeholder="Message" [(ngModel)]='inputText'>
+        <div style="margin-left: 5px">{{message.text}}</div> 
+    </md-grid-tile>
+  <md-grid-tile [colspan]="2" [rowspan]="1">
+    <md-input-container style="width: 90%">
+        <input md-input placeholder="Message" [(ngModel)]='inputText'>
     </md-input-container>
-    <button md-raised-button color="accent" (click)="submitMessage(inputText)">Submit Message</button>
-  <div>
-    <div> Google User Id: {{ (af.auth | async)?.uid }} </div>
-  <button md-raised-button (click)="login()">Login</button>
-  <button md-raised-button color="primary" (click)="logout()">Logout</button>
-  </div>
+    <button style="margin-left: 10px" md-raised-button color="accent" (click)="submitMessage(inputText)">Submit Message</button>
+  </md-grid-tile>
+</md-grid-list>
