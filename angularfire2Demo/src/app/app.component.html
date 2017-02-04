@@ -1,19 +1,25 @@
 <md-grid-list cols="2" rowHeight="50px">
-  <md-grid-tile [colspan]="2" [rowspan]="2"> 
+  <md-grid-tile [colspan]="2" [rowspan]="1"> 
     <div>
       <div> Logged in as: {{ user ? user.auth.email : 'Anonymous' }} </div>
       <button md-raised-button (click)="login()">Login</button>
       <button md-raised-button color="primary" (click)="logout()">Logout</button>
     </div>
   </md-grid-tile>
-    <md-grid-tile [colspan]="2" [rowspan]="1" *ngFor="let message of messages | async">
-        <img src="{{message.photo}}" style="width: 2%">
-        <div style="margin-left: 5px">
-          <span style="font-weight: bold">{{message.name}}</span>
-          <span style="font-style: italic; color: #9e9ea6; font-size: small;">{{formatDate(message.time)}}</span>
-        </div>
-        <div style="margin-left: 5px">{{message.text}}</div> 
-    </md-grid-tile>
+  <md-grid-tile [colspan]="2" [rowspan]="1">
+      <hr style="width: 100%;">
+  </md-grid-tile>
+  <md-grid-tile [colspan]="2" [rowspan]="1" *ngFor="let message of messages | async">
+      <img src="{{message.photo}}" style="width: 2%">
+      <div style="margin-left: 5px">
+        <span style="font-weight: bold">{{message.name}}</span>
+        <span style="font-style: italic; color: #9e9ea6; font-size: small;">{{formatDate(message.time)}}</span>
+      </div>
+      <div style="margin-left: 5px">{{message.text}}</div> 
+  </md-grid-tile>
+  <md-grid-tile [colspan]="2" [rowspan]="1">
+    <hr style="width: 100%;">
+  </md-grid-tile>
   <md-grid-tile [colspan]="2" [rowspan]="1">
     <md-input-container style="width: 90%">
         <input md-input placeholder="Message" [(ngModel)]='inputText'>
