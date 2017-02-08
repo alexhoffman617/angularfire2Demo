@@ -10,7 +10,7 @@
       <hr style="width: 100%;">
   </md-grid-tile>
   <md-grid-tile [colspan]="2" [rowspan]="11">
-    <div style="height: 550px; overflow-y: scroll">
+    <div id="messages" style="height: 550px; overflow-y: scroll">
       <div *ngFor="let message of messages | async">
         <img src="{{message.photo}}" style="width: 2%; display: inline-block">
         <div style="margin-left: 5px; display: inline-block">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as firebase from 'firebase';
 import { MdButton, MdInput, MdList, MdListItem, MdIcon } from '@angular/material';
@@ -12,7 +12,19 @@ import { AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewChecked {
+    ngOnInit() {
+      this.scrollMessagesToBottom();
+    }
+
+    ngAfterViewChecked() {
+      this.scrollMessagesToBottom();
+    }
+
+    scrollMessagesToBottom() {
+      var messagesDiv = document.getElementById('messages');
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
     messages: FirebaseListObservable<any[]>;
     login() {
       this.af.auth.login({
