@@ -9,13 +9,18 @@
   <md-grid-tile [colspan]="2" [rowspan]="1">
       <hr style="width: 100%;">
   </md-grid-tile>
-  <md-grid-tile [colspan]="2" [rowspan]="1" *ngFor="let message of messages | async">
-      <img src="{{message.photo}}" style="width: 2%">
-      <div style="margin-left: 5px">
-        <span style="font-weight: bold">{{message.name}}</span>
-        <span style="font-style: italic; color: #9e9ea6; font-size: small;">{{formatDate(message.time)}}</span>
+  <md-grid-tile [colspan]="2" [rowspan]="11">
+    <div style="height: 550px; overflow-y: scroll">
+      <div *ngFor="let message of messages | async">
+        <img src="{{message.photo}}" style="width: 2%; display: inline-block">
+        <div style="margin-left: 5px; display: inline-block">
+          <span style="font-weight: bold">{{message.name}}</span>
+          <span style="font-style: italic; color: #9e9ea6; font-size: small;">{{formatDate(message.time)}}</span>
+        </div>
+        <div style="margin-left: 5px">{{message.text}}</div>
+        <br>
       </div>
-      <div style="margin-left: 5px">{{message.text}}</div> 
+    </div>
   </md-grid-tile>
   <md-grid-tile [colspan]="2" [rowspan]="1">
     <hr style="width: 100%;">
