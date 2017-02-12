@@ -13,6 +13,9 @@ import { AngularFireModule, AuthProviders, AuthMethods} from 'angularfire2';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewChecked {
+    af;
+    user;
+    inputText: '';
     ngOnInit() {
       this.scrollMessagesToBottom();
     }
@@ -35,9 +38,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     logout() {
       this.af.auth.logout();
     }
-    af;
-    user;
-    inputText: '';
+
     submitMessage(text){
       var username = this.user ? this.user.auth.displayName: 'Anonymous';
       var photo = this.user ? this.user.auth.photoURL: 'http://cdn.onlinewebfonts.com/svg/img_210318.svg';
